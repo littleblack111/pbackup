@@ -49,7 +49,6 @@ def backup(target_so, multiso: bool, target: str, format, archive: bool, archive
 
     if archive:
         from shutil import make_archive
-        with open(f"{date.today().strftime(format)}.{archiveformat}", 'w'):
         make_archive(f"{target}.{archiveformat}", archiveformat, target)
 
 
@@ -102,7 +101,7 @@ def main():
         while archiveformat == None or archiveformat not in supportedarchiveformat and not archiveformat == '':
             if archiveformat == '':
                 archiveformat = defaultarchiveformat
-            elif archiveformat ==  
+            elif archiveformat not in supportedarchiveformat:
                 printerrorf(f"Please enter a valid archive format {supportedarchiveformat}")
             archiveformat = ainputf("[*] Please enter a archive format::")
 
