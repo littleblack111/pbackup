@@ -86,7 +86,7 @@ def main():
 
     target = None
     while target == None:
-        target = ainputf(f"{ascii.color.green}[*] Where do you want to place them(default /mnt/backup):: ")
+        target = ainputf(f"{ascii.color.green}[*] Where do you want to place them(default {defaultarget}):: ")
         if target == '':
             if path.exists(defaultarget):
                 target = defaultarget
@@ -95,7 +95,7 @@ def main():
         	exit(1)
 
 
-    format = ainputf(f"{ascii.color.green}[*] What format do you want it to be(default %Y/%m/%d%H:%M:%S):: ")
+    format = ainputf(f"{ascii.color.green}[*] What format do you want it to be(default {defaultformat}):: ")
     if format == '':
         format = defaultformat
 
