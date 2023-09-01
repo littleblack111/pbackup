@@ -10,6 +10,7 @@ defaultarget = "/mnt/backup"
 defaultformat="%Y/%m/%d %H:%M:%S"
 defaultarchiveformat = 'zip'
 supportedarchiveformat = ['zip', 'tgz', 'gz', 'tar', 'bz2', 'rar', 'tbz2', 'Z', '7z']
+successbanner = "=====================SUCCESS====================="
 
 
 
@@ -35,9 +36,11 @@ def backup(target_so, multiso: bool, target: str, format, archive: bool, archive
         	if path.isdir(l):
         		printinfo(f"Copying Directory {path.abspath(l)} -> {target}")
         		copytree(l, target)
+                printinfo(successbanner)
         	elif path.isfile(l):
         		printinfo(f"Copying File {path.abspath(l)} -> {target}")
         		copy(l, target)
+                printinfo(successbanner)
     else:
         if path.isdir(target_so):
         	printinfo(f"Copying Directory {path.abspath(target_so)} -> {target}")
@@ -46,9 +49,19 @@ def backup(target_so, multiso: bool, target: str, format, archive: bool, archive
         	printinfo(f"Copying File {path.abspath(target_so)} -> {target}")
         	copy(target_so, target)
 
+    printinfo(successbanner)
+
     if archive:
         from shutil import make_archive
+        printinfo("Making archive")
         make_archive(f"{target}", archiveformat, target)
+
+    printinfo(successbanner)
+
+    printinfo(f"Summary: Created backup - copied {target_so} into {target}\t", end='')
+    if archive:
+        printinfo(f"Created archive - created {target}.{archiveformat}", end='')
+    printf('\n')
 
 
 def main():
