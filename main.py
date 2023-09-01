@@ -5,10 +5,6 @@ from time import sleep
 from datetime import datetime, date
 from inspect import stack as funcname
 
-arg = arg()
-arg.add_argument('-q', '--quiet', help="Make program output be as quiet as possible")
-args = arg.parse_args()
-
 defaultarchive = True
 defaultarget = "/mnt/backup"
 defaultformat="%Y/%m/%d %H:%M:%S"
@@ -19,15 +15,9 @@ supportedarchiveformat = ['zip', 'targz', 'gz', 'tar', 'bz2', 'rar', 'tbz2', 'Z'
 
 def backup(target_so, multiso: bool, target: str, format, archive: bool, archiveformat: str):
 	# verify configuration
-	if args.q:
-		from sys import stdout, stderr
-		from os import devnull
-		stdout = open(devnull, 'w')
-		stderr = open(devnull, 'w')
 	printinfo(f"backup(): recive infomation/configuration: \ttarget_so: {target_so}, target: {target}, multi-target_so: {multi-target_so}, format: {format}, archive: {archive}, archive-format: {archiveformat}")
-	if not args.q:
-		if 'n' in ainputf("[?] Is this Correct?(Y/n):: ").lower():
-			main()
+    if 'n' in ainputf("[?] Is this Correct?(Y/n):: ").lower():
+        main()
 	# start copying operations
 	from shutil import copy, copytree
 	target += f'/{date.today().strftime(format)}'
