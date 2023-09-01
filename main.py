@@ -16,8 +16,8 @@ supportedarchiveformat = ['zip', 'targz', 'gz', 'tar', 'bz2', 'rar', 'tbz2', 'Z'
 def backup(target_so, multiso: bool, target: str, format, archive: bool, archiveformat: str):
 	# verify configuration
 	printinfo(f"backup(): recive infomation/configuration: \ttarget_so: {target_so}, target: {target}, multi-target_so: {multi-target_so}, format: {format}, archive: {archive}, archive-format: {archiveformat}")
-    if 'n' in ainputf("[?] Is this Correct?(Y/n):: ").lower():
-        main()
+	if 'n' in ainputf("[?] Is this Correct?(Y/n):: ").lower():
+		main()
 	# start copying operations
 	from shutil import copy, copytree
 	target += f'/{date.today().strftime(format)}'
