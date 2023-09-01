@@ -75,7 +75,8 @@ def main():
     while target == None:
         target = ainputf(f"{ascii.color.green}[*] Where do you want to place them(default /mnt/backup):: ")
         if target == '':
-        	target = defaultarget
+            if path.exists(defaultarget):
+                target = defaultarget
         elif not path.exists(target):
         	printerror("Please enter a valid or folder")
         	exit(1)
